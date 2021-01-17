@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top ">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="http://localhost:4200/giris">Ana Sayfa</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page"
+            href="http://localhost:4200/calismalar">Dökümanlar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="http://localhost:4200/kayitlar">Notlar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="http://localhost:4200/calismalarim">Notlarım</a>
+        </li>
+      </ul>
+    </div>
+    <td>
+      <button class="btn btn-outline-success btn-sm" style="float: right;" [routerLink]="['/login']">Üye Ol</button>
+    </td>
+  </div>
+</nav>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <button class="btn btn-outline-danger" style="float: right;" (click)="OturumKapat()">Oturumu Kapat</button>
+      <h3>Dosya Ekle</h3>
+      <input type="file" class="mt-3" (change)="DosyaSec($event)">
+      <button class="btn btn-primary" (click)="DosyaYukle()">Dosya Yükle</button>
+      <h3 class="mb-3 mt-3">Dosya Listesi</h3>
+      <table class="table table-hover">
+        <thead>
+          <th>Dosya Adı</th>
+          <th>Tarih</th>
+          <th>Sil</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dosya of dosyalar">
+            <td>
+              <a href="{{dosya.url}}" target="_blank">{{dosya.adi}}</a>
+            </td>
+            <td>{{dosya.tarih | date:'dd.MM.yyyy HH:mm:ss'}}</td>
+            <td><button class="btn btn-danger" (click)="DosyaSil(dosya)">Sil</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

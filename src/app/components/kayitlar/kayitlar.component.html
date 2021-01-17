@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top ">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="http://localhost:4200/giris">Ana Sayfa</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page"
+            href="http://localhost:4200/calismalar">Dökümanlar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="http://localhost:4200/kayitlar">Notlar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="http://localhost:4200/calismalarim">Notlarım</a>
+        </li>
+      </ul>
+    </div>
+    <td>
+      <button class="btn btn-outline-success btn-sm" style="float: right;" [routerLink]="['/login']">Üye Ol</button>
+    </td>
+  </div>
+</nav>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <button class="btn btn-outline-primary" [routerLink]="['/kayitekle']">Not Ekle</button>
+      <button class="btn btn-outline-danger " style="float: right;" (click)="OturumKapat()">Oturumu Kapat</button>
+      <p class="mt-2">Merhaba <b>{{adsoyad}}</b></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mt-3" *ngFor="let kayit of kayitlar">
+        <div class="card-header">
+          <h4>{{kayit.baslik}}</h4>
+          <div style="float: right;">
+            <button class="btn btn-outline-info btn-sm" [routerLink]="['/kayitdetay',kayit.key]">Detay</button>
+            <button class="btn btn-outline-success btn-sm ml-3" [routerLink]="['/kayitduzenle',kayit.key]"
+              *ngIf="kayit.uid==uid">Düzenle</button>
+            <button class="btn btn-outline-danger btn-sm ml-3" [routerLink]="['/kayitsil',kayit.key]"
+              *ngIf="kayit.uid==uid">Sil</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div [innerHTML]="kayit.icerik"></div>
+        </div>
+        <div class="card-footer">
+          <b>Ekleme Tarihi : </b>{{kayit.kayTarih | date:'dd.MM.yyyy HH:mm:ss'}}
+          <b>Düzenleme Tarihi : </b>{{kayit.duzTarih | date:'dd.MM.yyyy HH:mm:ss'}}
+        </div>
+      </div>
+    </div>
+  </div>

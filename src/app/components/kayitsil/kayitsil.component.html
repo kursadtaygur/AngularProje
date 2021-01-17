@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top ">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="http://localhost:4200/giris">Ana Sayfa</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page"
+            href="http://localhost:4200/calismalar">Dökümanlar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="http://localhost:4200/kayitlar">Notlar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="http://localhost:4200/calismalarim">Notlarım</a>
+        </li>
+      </ul>
+    </div>
+    <td>
+      <button class="btn btn-outline-success btn-sm" style="float: right;" [routerLink]="['/login']">Üye Ol</button>
+    </td>
+  </div>
+</nav>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 mt-4">
+      <button class="btn btn-outline-primary" [routerLink]="['/kayitlar']">Notları Görüntüle</button>
+      <div class="card mt-4">
+        <div class="card-header bg-danger text-white">
+          <h4>Not Sil</h4>
+        </div>
+        <div class="card-body">
+
+          <div class="form-group">
+            <label>Başlık</label>
+            <h4>{{secKayit.baslik}}</h4>
+          </div>
+          <div class="form-group">
+            <label>İçerik</label>
+            <div [innerHTML]="secKayit.icerik"></div>
+          </div>
+          <h5>Kayıt Silinecektir Onaylıyor musunuz?</h5>
+        </div>
+        <div class="card-footer">
+          <input type="submit" class="btn btn-outline-danger" (click)="Sil()" value="Sil">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
